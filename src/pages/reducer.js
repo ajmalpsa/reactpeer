@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     peer: "",
-    connection: ''
+    connection: "",
+    user: "",
 }
 
 export const peerReducer = createSlice({
@@ -10,13 +11,16 @@ export const peerReducer = createSlice({
     initialState,
     reducers: {
         setPeer: (state, action) => {
-            state.peer = action.payload.peer
+            state.peer = action.payload.peer;
         },
         setConnection: (state, action) => {
-            state.connection = action.payload.connection
-        }   
+            state.connection = action.payload.connection;
+        },
+        setUser: (state, action) => {
+            state.user = action.payload.user;
+        }
     }
 })
 
 export default peerReducer.reducer;
-export const {setPeer, setConnection} = peerReducer.actions;
+export const {setPeer, setConnection, setUser} = peerReducer.actions;

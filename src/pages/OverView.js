@@ -27,8 +27,7 @@ function OverView(props) {
         if(peer){
             peer.on("connection", (conn) => {
                 conn.on("data", (data) => {
-                    console.log(data);
-                    dispatch(setConnection({connection}))
+                    dispatch(setConnection({connection: conn}))
                     navigate('/chat')
                 });
             });

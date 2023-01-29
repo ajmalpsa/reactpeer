@@ -2,11 +2,11 @@ import Peer from 'peerjs';
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
-import { setPeer } from './reducer';
+import { setPeer, setUser } from './reducer';
 
 function NameInput() {
 
-    const [user, setUser] = useState('');
+    const [user, setUserr] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -18,7 +18,9 @@ function NameInput() {
         if (peer) {
             peer.on('open', function (id) {
                 if(id){
-                    navigate('/overview')
+                    console.log(id);
+                    dispatch(setUser({user: id}));
+                    navigate('/overview');
                 }
             });
         }
@@ -42,7 +44,7 @@ function NameInput() {
     return (
         <div>
             Name:
-            <input type="text" value={user} name="user" label="Name" onChange={e => setUser(e.target.value)} />
+            <input type="text" value={user} name="user" label="Name" onChange={e => setUserr(e.target.value)} />
             <button onClick={handleSubmit}>{'Connect >>'}</button>
         </div>
     )
