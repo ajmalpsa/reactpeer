@@ -15,7 +15,7 @@ function OverView(props) {
     const handleSubmit = () => {
         if (peer) {
             const connection = peer.connect(connectUser);
-            dispatch(setConnection({connection}))
+            dispatch(setConnection({connection, connectedUser: connectUser}))
             navigate('/chat')
         }
         else {
@@ -26,10 +26,11 @@ function OverView(props) {
     useEffect(() => {
         if(peer){
             peer.on("connection", (conn) => {
-                conn.on("data", (data) => {
-                    dispatch(setConnection({connection: conn}))
+                console.log(conn.peer);
+                // conn.on("data", (data) => {
+                    dispatch(setConnection({connection: conn, connectedUser: conn.peer}))
                     navigate('/chat')
-                });
+                // });
             });
         }
     },[peer])
